@@ -1,11 +1,28 @@
-import { useState } from 'react'
+import { createBrowserRouter } from "react-router";
+import { RouterProvider } from "react-router/dom";
+import constants from './utils/constants';
+import Layout from './container/layout';
+import {lazy} from 'react'
 
-function App() {
-  return (
-    <>
-   App
-    </>
-  )
+const { routes: routeConfig } = constants;
+
+const routes = () => {
+  return routeConfig.map(({ path, name }) => {
+    return {
+      path,
+      Component: lazy(() => import(`./pages/${name}.tsx`))
+    }
+  })
 }
 
-export default App
+const router = createBrowserRouter([{
+  path: '/',
+  Component: Layout,
+  children: routes()
+}]);
+
+const App = () => {
+  return <RouterProvider router={router} />;
+};
+
+export default App;

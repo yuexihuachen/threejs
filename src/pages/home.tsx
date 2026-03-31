@@ -1,6 +1,6 @@
 const Index = () => {
     return <div className="grid">
-        index
+        home
     </div>
 }
 
