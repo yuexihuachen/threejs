@@ -7,10 +7,10 @@ const { routes } = constants;
 const Nav = () => {
     return <div className="text-gray-700 text-xl flex flex-col gap-4">
         {
-            routes.map(({ path, name }) => {
+            routes.map(({ path, alias }) => {
                 return <React.Fragment key={path}>
                     <Link to={path} className="text-blue-500 font-bold hover:text-yellow-500">
-                        {name}
+                        {alias}
                     </Link>
                 </React.Fragment>
             })

@@ -2,13 +2,16 @@ const constants = {
     routes: [
         {
             path: '/',
-            name: 'index'
+            name: 'index',
+            alias: 'create scene'
         },
         {
-            path: '/home',
-            name: 'home'
+            path: '/create-text',
+            name: 'create-text',
+            alias: 'create text'
         }
     ]
 }
 
 export default constants
+
