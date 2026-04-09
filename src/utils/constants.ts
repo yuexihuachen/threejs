@@ -3,12 +3,12 @@ const constants = {
         {
             path: '/',
             name: 'index',
-            alias: 'create scene'
+            alias: 'scene'
         },
         {
             path: '/create-text',
             name: 'create-text',
-            alias: 'create text'
+            alias: 'geo light'
         }
     ]
 }
