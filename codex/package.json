@@ -1,0 +1,12 @@
+{
+  "name": "codex",
+  "scripts": {
+    "dev": "bun run --hot ./index.ts"
+  },
+  "dependencies": {
+    "hono": "^4.12.12"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
