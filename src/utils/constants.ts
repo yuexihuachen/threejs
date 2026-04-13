@@ -3,12 +3,17 @@ const constants = {
         {
             path: '/',
             name: 'index',
-            alias: 'scene'
+            alias: '创建场景'
         },
         {
             path: '/create-text',
             name: 'create-text',
-            alias: 'geo light'
+            alias: '盒子模型'
+        },
+        {
+            path: '/base-tuyuan',
+            name: 'base-tuyuan',
+            alias: '图元'
         }
     ]
 }

@@ -3,11 +3,11 @@ import Nav from "./nav";
 
 export default function Layout() {
   return (
-    <div className="w-full h-dvh grid grid-cols-8 p-10">
-      <div className="grid">
+    <div className="w-full h-dvh flex p-10">
+      <div className="w-28">
         <Nav />
       </div>
-      <div className="col-span-6">
+      <div className="flex-1">
         <Outlet />
       </div>
     </div>
