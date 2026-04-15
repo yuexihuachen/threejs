@@ -1,16 +1,14 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as dat from 'dat.gui';
-import stars from 'url:./img/stars.jpg';
-import nebula from 'url:./img/nebula.jpg';
 
 const root = document.getElementById('root');
 // 场景（scene）、相机（camera）和渲染器（renderer）
 // 渲染器（renderer）
-const renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer({ alpha: true });
 renderer.shadowMap.enabled = true;
 // 设置渲染器尺寸 - 较低的分辨率渲染
-renderer.setSize(window.innerWidth, window.innerHeight, false);
+renderer.setSize(window.innerWidth, window.innerHeight);
 root.appendChild(renderer.domElement);
 
 // 场景（scene）
@@ -97,10 +95,11 @@ spotLight.castShadow = true;
 const sLightHelper = new THREE.SpotLightHelper(spotLight);
 scene.add(sLightHelper);
 
-// renderer.setClearColor(0xFFEA00)
-const textureLoader = new THREE.TextureLoader();
-console.log(nebula)
-scene.background = textureLoader.load(stars)
+// 距离远近线性雾的模糊程度
+// scene.fog = new THREE.Fog(0xFFFFFF, 0, 10);
+scene.fog = new THREE.FogExp2(0xFFFFFF, 0.01);
+
+renderer.setClearColor(0xFFEA00)
 
 const gui = new dat.GUI();
 

@@ -15,6 +15,9 @@ importers:
         specifier: ^0.183.2
         version: 0.183.2
     devDependencies:
+      '@parcel/transformer-image':
+        specifier: ^2.16.4
+        version: 2.16.4(@parcel/core@2.16.4(@swc/helpers@0.5.21))
       parcel:
         specifier: ^2.14.0
         version: 2.16.4(@swc/helpers@0.5.21)
