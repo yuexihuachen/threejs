@@ -8,6 +8,7 @@ const root = document.getElementById('root');
 // 场景（scene）、相机（camera）和渲染器（renderer）
 // 渲染器（renderer）
 const renderer = new THREE.WebGLRenderer();
+// 渲染器开启阴影映射
 renderer.shadowMap.enabled = true;
 // 设置渲染器尺寸 - 较低的分辨率渲染
 renderer.setSize(window.innerWidth, window.innerHeight, false);
@@ -28,10 +29,10 @@ orbit.update()
 // 创建一个立方体几何体，包含了立方体的所有顶点（vertices）和面（faces）
 const boxGeometry = new THREE.BoxGeometry();
 // 设置了材质属性
-const boxMetryaterial = new THREE.MeshBasicMaterial({ color: 0x00FF00 });
+const boxMaterial = new THREE.MeshBasicMaterial({ color: 0x00FF00 });
 // Mesh（网格）。网格接受几何体并将材质应用于其上的对象，然后我们可以将它插入场景中并自由移动。
 // 继承自 Object3D,具有Object3D的属性和方法
-const box = new THREE.Mesh(boxGeometry, boxMetryaterial);
+const box = new THREE.Mesh(boxGeometry, boxMaterial);
 // 添加的对象会被放置在坐标 (0,0,0) 处
 scene.add(box);
 // 用于表示平面的几何类。
@@ -51,6 +52,7 @@ scene.add(plane)
  * 在 Three.js 中，所有涉及旋转的角度（如 rotation.x）均使用弧度
  */
 plane.rotation.x = -0.5 * Math.PI;
+// 平面接收阴影的设置
 plane.receiveShadow = true;
 
 // 网格的对象。网格是二维的线条数组。
@@ -69,6 +71,7 @@ const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 // 球形网格插入场景
 scene.add(sphere)
 sphere.position.set(-10, 10, 0);
+// 投射阴影
 sphere.castShadow = true;
 
 // 环境光。
@@ -79,6 +82,7 @@ scene.add(ambientLight)
 // const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 2);
 // scene.add(directionalLight);
 // directionalLight.position.set(-30, 50, 0);
+// // 投射阴影
 // directionalLight.castShadow = true;
 // directionalLight.shadow.camera.bottom = -12;
 // // 构建一个新的方向光辅助器
@@ -92,15 +96,44 @@ scene.add(ambientLight)
 const spotLight = new THREE.SpotLight(0xFFFFFF, 10);
 scene.add(spotLight);
 spotLight.position.set(-100, 100, 0);
+// 投射阴影
 spotLight.castShadow = true;
 
 const sLightHelper = new THREE.SpotLightHelper(spotLight);
 scene.add(sLightHelper);
 
 // renderer.setClearColor(0xFFEA00)
+// 创建一个新的纹理加载器。
 const textureLoader = new THREE.TextureLoader();
-console.log(nebula)
-scene.background = textureLoader.load(stars)
+// scene.background = textureLoader.load(stars);
+// 构建一个新的立方体纹理加载器。
+const cubeTextureLoader = new THREE.CubeTextureLoader();
+scene.background = cubeTextureLoader.load([
+    nebula,
+    nebula,
+    stars,
+    stars,
+    stars,
+    stars
+])
+// 几何体
+const box2Geometry = new THREE.BoxGeometry(4,4,4);
+// 纹理
+const box2Material = new THREE.MeshBasicMaterial({
+    // map: textureLoader.load(nebula)
+})
+const box2MultiMaterial = [
+    new THREE.MeshBasicMaterial({map:textureLoader.load(stars)}),
+    new THREE.MeshBasicMaterial({map:textureLoader.load(stars)}),
+    new THREE.MeshBasicMaterial({map:textureLoader.load(nebula)}),
+    new THREE.MeshBasicMaterial({map:textureLoader.load(stars)}),
+    new THREE.MeshBasicMaterial({map:textureLoader.load(nebula)}),
+    new THREE.MeshBasicMaterial({map:textureLoader.load(stars)})
+]
+const box2 = new THREE.Mesh(box2Geometry, box2MultiMaterial);
+scene.add(box2)
+box2.position.set(0, 15, 10)
+// box2.material.map = textureLoader.load(nebula)
 
 const gui = new dat.GUI();
 
