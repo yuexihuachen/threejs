@@ -2,8 +2,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as dat from 'dat.gui';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'
-import stars from 'url:./img/stars.jpg';
-import nebula from 'url:./img/nebula.jpg';
+import stars from 'url:./images/img-1/stars.jpg';
+import nebula from 'url:./images/img-1/nebula.jpg';
 import vShader from './index.vert';
 import fShader from './index.frag';
 

@@ -16,6 +16,7 @@ import uranusTexture from 'url:./images/img-2/uranus.jpg';
 import uranusRingTexture from 'url:./images/img-2/uranus ring.png';
 import neptuneTexture from 'url:./images/img-2/neptune.jpg';
 import plutoTexture from 'url:./images/img-2/pluto.jpg';
+import { texture } from 'three/src/nodes/TSL.js';
 
 const root = document.getElementById('root');
 // 场景（scene）、相机（camera）和渲染器（renderer）
@@ -34,7 +35,6 @@ const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHei
 const orbit = new OrbitControls(camera, renderer.domElement);
 
 camera.position.set(-90, 140, 140);
-// orbit.target.copy(6, 0, 0)
 orbit.update();
 
 // 添加一个环境光
@@ -138,10 +138,6 @@ function animate(time) {
     neptune.obj.rotateY(0.0001);
     pluto.obj.rotateY(0.00007);
 
-    // const pos = Object.values(earth.mesh.position);
-    // orbit.target.set(...pos);
-
-    // orbit.update();
     // 渲染器加载场景和相机
     renderer.render(scene, camera);
 }

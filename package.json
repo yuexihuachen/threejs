@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "source": "src/index.html",
   "scripts": {
+    "index1": "parcel ./src/index-1.html",
     "start": "parcel",
     "build": "parcel build"
   },
